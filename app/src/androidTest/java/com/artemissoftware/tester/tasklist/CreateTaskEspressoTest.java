@@ -1,12 +1,14 @@
-package com.artemissoftware.tester;
+package com.artemissoftware.tester.tasklist;
 
 import android.content.Context;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.artemissoftware.tester.R;
 import com.artemissoftware.tester.tasklist.TaskListActivity;
 
 import org.junit.Rule;
@@ -45,7 +47,7 @@ public class CreateTaskEspressoTest {
      */
     @Test
     public void createTaskFlowValidation() {
-        onView(withId(R.id.fab)).perform(click());
+        onView(ViewMatchers.withId(R.id.fab)).perform(click());
 
         String testString = "Espresso created task";
         onView(withId(R.id.create_task_title)).perform(typeText(testString));

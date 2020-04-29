@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.artemissoftware.tester">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +16,14 @@
 
         <activity android:name=".tasklist.LoginActivity"/>
         <activity android:name=".tasklist.CreateTaskActivity"/>
-        <activity android:name=".tasklist.TaskListActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".tasklist.TaskListActivity" />
+
+
+        <activity android:name=".coffeecompanion.beveragelist.BeverageListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".coffeecompanion.beveragedetail.BeverageDetailActivity"/>
+        <activity android:name=".coffeecompanion.coffeeshoplist.CoffeeShopListActivity"/>
+        <activity android:name=".coffeecompanion.coffeeshopdetail.CoffeeShopDetailActivity"/>
+
 
         <activity android:name=".MainActivity">
             <intent-filter>
