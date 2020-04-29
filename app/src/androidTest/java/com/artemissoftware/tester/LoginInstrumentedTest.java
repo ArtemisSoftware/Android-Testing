@@ -17,13 +17,9 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.allOf;
-import static org.junit.Assert.*;
 
 
-import androidx.test.espresso.intent.Intents;
-import androidx.test.rule.ActivityTestRule;
-
-import com.artemissoftware.tester.tasks.LoginActivity;
+import com.artemissoftware.tester.tasklist.LoginActivity;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -40,7 +36,7 @@ public class LoginInstrumentedTest {
 
     /**
      *
-     * Test is extra is passed
+     * Test if extra is passed
      */
     @Test
     public void loginIntentExtrasValidation() {

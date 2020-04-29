@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".tasks.LoginActivity"/>
-        <activity android:name=".tasks.CreateTaskActivity"/>
-        <activity android:name=".tasks.TaskListActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".tasklist.LoginActivity"/>
+        <activity android:name=".tasklist.CreateTaskActivity"/>
+        <activity android:name=".tasklist.TaskListActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

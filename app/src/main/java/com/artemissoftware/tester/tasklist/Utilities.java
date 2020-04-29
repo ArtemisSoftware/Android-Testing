@@ -1,6 +1,4 @@
-package com.artemissoftware.tester.tasks;
-
-import android.util.Patterns;
+package com.artemissoftware.tester.tasklist;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

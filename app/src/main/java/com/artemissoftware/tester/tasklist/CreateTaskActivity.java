@@ -1,4 +1,4 @@
-package com.artemissoftware.tester.tasks;
+package com.artemissoftware.tester.tasklist;
 
 import androidx.appcompat.app.AppCompatActivity;
 

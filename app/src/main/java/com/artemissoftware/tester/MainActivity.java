@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.artemissoftware.tester.tasks.LoginActivity;
+import com.artemissoftware.tester.tasklist.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

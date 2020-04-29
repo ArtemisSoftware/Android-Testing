@@ -1,6 +1,6 @@
 package com.artemissoftware.tester;
 
-import com.artemissoftware.tester.tasks.Utilities;
+import com.artemissoftware.tester.tasklist.Utilities;
 
 import org.junit.Test;
 
