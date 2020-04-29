@@ -24,6 +24,7 @@ class BeverageViewHolder extends RecyclerView.ViewHolder {
     @NonNull
     private ImageView mIconImageView;
 
+
     BeverageViewHolder(@NonNull View itemView) {
         super(itemView);
         mTitleTextView = (TextView) itemView.findViewById(R.id.text_title);
