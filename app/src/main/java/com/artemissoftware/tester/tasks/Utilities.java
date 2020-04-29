@@ -6,7 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utilities {
-    static boolean isValidEmail(CharSequence email) {
+
+    public static boolean isValidEmail(CharSequence email) {
         if (email == null) {
             return true;
         }
