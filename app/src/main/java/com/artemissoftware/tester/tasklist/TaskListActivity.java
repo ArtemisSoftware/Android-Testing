@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 public class TaskListActivity extends AppCompatActivity {
 
+
     private TextView taskItem;
     private View taskSeparator;
 
