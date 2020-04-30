@@ -16,12 +16,19 @@ import androidx.core.app.ActivityCompat;
 
 import com.artemissoftware.tester.R;
 import com.artemissoftware.tester.coffeecompanion.coffeeshoplist.idlingresource.CoffeeShopsIdlingResource;
+/*
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
 import com.yelp.clientlib.entities.Business;
 import com.yelp.clientlib.entities.SearchResponse;
 import com.yelp.clientlib.entities.options.CoordinateOptions;
+*/
+import com.yelp.fusion.client.connection.YelpFusionApi;
+import com.yelp.fusion.client.connection.YelpFusionApiFactory;
+import com.yelp.fusion.client.models.Business;
+import com.yelp.fusion.client.models.SearchResponse;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,14 +38,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//import static android.content.Context.LOCATION_SERVICE;
+import static android.content.Context.LOCATION_SERVICE;
 import static com.artemissoftware.tester.coffeecompanion.coffeeshoplist.CoffeeShopListActivity.COFFEE_SHOPS_BUNDLE_KEY;
-/*
-import static com.artemissoftware.tester.coffeecompanion.http.ApiConstants.CONSUMER_KEY;
-import static com.artemissoftware.tester.coffeecompanion.http.ApiConstants.CONSUMER_SECRET;
-import static com.artemissoftware.tester.coffeecompanion.http.ApiConstants.TOKEN;
-import static com.artemissoftware.tester.coffeecompanion.http.ApiConstants.TOKEN_SECRET;
-*/
+
+import static com.artemissoftware.tester.coffeecompanion.constants.Api.API_KEY;
+import static com.artemissoftware.tester.coffeecompanion.constants.Api.CLIENT_ID;
+
 
 class CoffeeShopListViewPresenter {
 
@@ -57,7 +62,7 @@ class CoffeeShopListViewPresenter {
         public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
             SearchResponse searchResponse = response.body();
             Log.d("CoffeeShop", "onSearchCompleted() called with: response = [" + response + "]");
-            List<Business> businesses = searchResponse.businesses();
+            List<Business> businesses = searchResponse.getBusinesses(); //businesses();
             handleSearchResponse(businesses);
 
             // FOR OUR TESTS:
@@ -125,24 +130,33 @@ class CoffeeShopListViewPresenter {
         // First, let's see if we can get our coordinates. If not, we'll have to listen
         // for changes in device Location, because the device may not have registered
         // a Location update yet.
+/*
         CoordinateOptions coordinateOptions = getCoordinateOptions();
         if (null == coordinateOptions) {
             listenForLocationUpdates();
             return;
         }
-/*
-        YelpAPIFactory apiFactory = new YelpAPIFactory(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
-        YelpAPI yelpAPI = apiFactory.createAPI();
+*/
 
-        Map<String, String> params = new HashMap<>();
-        params.put("category_filter", "coffee");
-        params.put("sort", "1");
 
-        Call<SearchResponse> call = yelpAPI.search(coordinateOptions, params);
+        YelpFusionApiFactory apiFactory = new YelpFusionApiFactory();
+        try {
+            YelpFusionApi yelpFusionApi = apiFactory.createAPI(API_KEY);
 
-        call.enqueue(coffeeShopSearchCallback);
+            Map<String, String> params = new HashMap<>();
+            params.put("term", "coffee");
+            params.put("latitude", "38.7560097");
+            params.put("longitude", "-9.175558");
 
- */
+            Call<SearchResponse> call = yelpFusionApi.getBusinessSearch(params);
+            call.enqueue(coffeeShopSearchCallback);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     private void handleSearchResponse(@Nullable List<Business> businesses) {
@@ -166,6 +180,7 @@ class CoffeeShopListViewPresenter {
         }
     }
 
+    /*
     @Nullable
     private CoordinateOptions getCoordinateOptions() {
         Location location = getCurrentLocation();
@@ -184,18 +199,17 @@ class CoffeeShopListViewPresenter {
                 .altitude(altitude)
                 .build();
     }
-
+*/
     @Nullable
     private Location getCurrentLocation() {
 
-        return null;
-        /*
         Context context = coffeeShopListView.getContext();
         // Make sure we really do have permission before trying to access location!
         if (ActivityCompat.checkSelfPermission(context, permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.e("CoffeeShopListActivity", "We don't have permission to get the current device location...");
             return null;
         }
+
 
         // Get the user's current location
         LocationManager manager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
@@ -205,7 +219,7 @@ class CoffeeShopListViewPresenter {
         }
 
         return manager.getLastKnownLocation(locationProvider);
-        */
+
     }
 
     private String getLocationProvider(@NonNull LocationManager manager) {
@@ -259,6 +273,7 @@ class CoffeeShopListViewPresenter {
         if (null != coffeeShops && coffeeShops.size() > 0) {
             coffeeShopListView.sendShareIntent(coffeeShopListModel.getCoffeeShops().get(0));
         }
+
     }
 
     void onPermissionGranted() {

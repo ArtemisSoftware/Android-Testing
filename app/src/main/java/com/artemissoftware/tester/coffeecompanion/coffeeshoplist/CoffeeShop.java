@@ -1,6 +1,5 @@
 package com.artemissoftware.tester.coffeecompanion.coffeeshoplist;
 
-import android.location.Location;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,8 +7,11 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.yelp.clientlib.entities.Business;
+//import com.yelp.clientlib.entities.Business;
 //import com.yelp.clientlib.entities.Location;
+
+import com.yelp.fusion.client.models.Business;
+import com.yelp.fusion.client.models.Location;
 
 import java.util.Locale;
 
@@ -37,19 +39,19 @@ public class CoffeeShop implements Parcelable {
     private String imageUrl;
 
     public CoffeeShop(Business business) {
-        rating = business.rating() == null ? 0.0d : business.rating();
-        distance = business.distance() == null ? 0.0d : convertFromMetersToMiles(business.distance());
-        isClosed = business.isClosed() == null ? true : business.isClosed();
-        name = business.name();
-        websiteUrl = business.url();
-        phoneNumber = business.displayPhone();
 
-        /*
-        Location location = business.location();
-        if (null != location && null != location.address() && location.address().size() > 0) {
-            address = Uri.encode(location.address().get(0) + ", " + location.city() + ", " + location.stateCode());
+        rating = business.getRating() == 0.0d ? 0.0d : business.getRating();
+        distance = business.getDistance() == 0.0d ? 0.0d : convertFromMetersToMiles(business.getDistance());
+        isClosed = business.getIsClosed() == true ? true : business.getIsClosed();
+        name = business.getName();
+        websiteUrl = business.getUrl();
+        phoneNumber = business.getDisplayPhone();
+
+        Location location = business.getLocation();
+        if (null != location && null != location.getAddress1()) {
+            address = Uri.encode(location.getAddress1() + ", " + location.getCity() + ", " + location.getState());
         }
-        */
+
     }
 
     private CoffeeShop(double rating, double distance, @Nullable String name, boolean isClosed, @Nullable String websiteUrl, @Nullable String phoneNumber, @Nullable String address, String imageUrl) {

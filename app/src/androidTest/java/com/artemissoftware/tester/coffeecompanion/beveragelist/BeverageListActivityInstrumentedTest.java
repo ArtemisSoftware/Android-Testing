@@ -1,5 +1,9 @@
 package com.artemissoftware.tester.coffeecompanion.beveragelist;
 
+import android.app.Activity;
+import android.app.Instrumentation.ActivityResult;
+import android.app.Instrumentation;
+import android.content.Intent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -12,14 +16,17 @@ import androidx.test.espresso.matcher.BoundedMatcher;
 
 import com.artemissoftware.tester.R;
 import com.artemissoftware.tester.coffeecompanion.beveragedetail.BeverageDetailActivity;
+import com.artemissoftware.tester.coffeecompanion.coffeeshoplist.CoffeeShopListActivity;
 import com.artemissoftware.tester.coffeecompanion.common.Beverage;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
@@ -41,6 +48,21 @@ public class BeverageListActivityInstrumentedTest {
 
 
 
+    @Before
+    public void stubCoffeeShopListActivityIntent() {
+        Intent intent = new Intent();
+        ActivityResult coffeeShopListActivityResult = new ActivityResult(Activity.RESULT_OK, intent);
+        intending(hasComponent(CoffeeShopListActivity.class.getName())).respondWith(coffeeShopListActivityResult);
+    }
+
+
+
+    @Test
+    public void testMapFabClick_shouldOpenCoffeeShopListActivity() {
+        onView(withId(R.id.map_fab)).perform(click());
+
+        intended(hasComponent(CoffeeShopListActivity.class.getName()));
+    }
 
     @Test
     public void testBeverageClick_shouldOpenBeverageListActivity() {

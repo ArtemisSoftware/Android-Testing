@@ -66,7 +66,7 @@ public class CoffeeShopListActivity extends AppCompatActivity implements CoffeeS
         initializeViews();
 
         presenter = new CoffeeShopListViewPresenter(this);
-        presenter.onCreate(savedInstanceState, locationPermissionHasBeenGranted());
+        presenter.onCreate(/*savedInstanceState*/getIntent().getExtras(), locationPermissionHasBeenGranted());
     }
 
     @Override

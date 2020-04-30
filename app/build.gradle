@@ -93,8 +93,10 @@ dependencies {
     // GSON
     implementation 'com.google.code.gson:gson:2.8.0'
 
+
+    implementation  'io.github.ranga543:yelp-fusion-client:0.1.4'
     // Yelp v2 API client library for Android
-    implementation 'com.yelp.clientlib:yelp-android:3.0.0'
+    //implementation 'com.yelp.clientlib:yelp-android:3.0.0'
 
     annotationProcessor 'com.google.auto.value:auto-value:1.2'
 }
