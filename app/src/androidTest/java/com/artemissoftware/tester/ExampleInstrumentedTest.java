@@ -1,4 +1,4 @@
-package com.artemissoftware.tester.tasklist;
+package com.artemissoftware.tester;
 
 import android.content.Context;
 
