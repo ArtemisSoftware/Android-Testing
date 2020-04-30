@@ -1,4 +1,4 @@
-package com.artemissoftware.tester;
+package com.artemissoftware.tester.tasklist;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
