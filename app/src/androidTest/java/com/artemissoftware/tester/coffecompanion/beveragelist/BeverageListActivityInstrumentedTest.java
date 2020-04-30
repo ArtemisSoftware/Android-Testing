@@ -6,10 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.espresso.matcher.BoundedMatcher;
 
 import com.artemissoftware.tester.R;
+import com.artemissoftware.tester.coffeecompanion.beveragedetail.BeverageDetailActivity;
 import com.artemissoftware.tester.coffeecompanion.beveragelist.BeverageListActivity;
 import com.artemissoftware.tester.coffeecompanion.common.Beverage;
 
@@ -19,6 +21,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
@@ -32,11 +35,46 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 
 public class BeverageListActivityInstrumentedTest {
 
     @Rule
     public IntentsTestRule<BeverageListActivity> intentsTestRule = new IntentsTestRule<>(BeverageListActivity.class);
+
+
+
+
+    @Test
+    public void testBeverageClick_shouldOpenBeverageListActivity() {
+
+        onView(withText("Café mocha"))
+                .check(matches(isDisplayed()));
+                //Esta verificação só funciona se o item está fora do display
+                //Como estou a usar um tablet e o item aparece o teste tem que ser modificado
+                //.check(matches(not(isDisplayed())));
+
+        onView(withId(R.id.beverages_recycler))
+                .perform(RecyclerViewActions.scrollToPosition(7));
+
+        onView(withId(R.id.beverages_recycler))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(6, click()));
+
+        intended(hasComponent(BeverageDetailActivity.class.getName()));
+
+        pressBack();
+
+        onView(withText("Café mocha"))
+                .check(matches(isDisplayed()));
+                //Esta verificação só funciona se o item está fora do display
+                //Como estou a usar um tablet e o item aparece o teste tem que ser modificado
+                //.check(matches(not(isDisplayed())));
+
+
+    }
+
+
+
 
     @Test
     public void testMapFloatingActionButton_shouldBeDisplayed() {
