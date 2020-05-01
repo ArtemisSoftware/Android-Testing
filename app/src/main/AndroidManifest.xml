@@ -25,6 +25,12 @@
         <activity android:name=".coffeecompanion.coffeeshopdetail.CoffeeShopDetailActivity"/>
 
 
+        <activity android:name=".notekeeper.NoteListActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".notekeeper.NoteActivity" android:label="@string/title_activity_note" android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
