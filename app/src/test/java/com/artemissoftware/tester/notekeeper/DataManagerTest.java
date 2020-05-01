@@ -1,38 +1,45 @@
 package com.artemissoftware.tester.notekeeper;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class DataManagerTest {
 
+
+    static DataManager sDataManager;
+
+    @BeforeClass
+    public static void classSetUp() {
+        sDataManager = DataManager.getInstance();
+    }
+
     @Before
     public void setUp() {
 
-        DataManager dm = DataManager.getInstance();
-        dm.getNotes().clear();
-        dm.initializeExampleNotes();
+        sDataManager.getNotes().clear();
+        sDataManager.initializeExampleNotes();
     }
 
 
     @Test
     public void createNewNote() {
 
-        DataManager dm = DataManager.getInstance();
-        final CourseInfo course = dm.getCourse("androiid_async");
+        final CourseInfo course = sDataManager.getCourse("androiid_async");
         final String noteTitle = "Test note title";
         final String noteText = "This is the body text of my test note";
 
 
-        int noteIndex = dm.createNewNote();
-        NoteInfo newNote = dm.getNotes().get(noteIndex);
+        int noteIndex = sDataManager.createNewNote();
+        NoteInfo newNote = sDataManager.getNotes().get(noteIndex);
 
         newNote.setCourse(course);
         newNote.setTitle(noteTitle);
         newNote.setText(noteText);
 
-        NoteInfo compareNote = dm.getNotes().get(noteIndex);
+        NoteInfo compareNote = sDataManager.getNotes().get(noteIndex);
 
         assertEquals(course, compareNote.getCourse());
         assertEquals(noteTitle, compareNote.getTitle());
@@ -44,7 +51,6 @@ public class DataManagerTest {
     @Test
     public void findSimilarNotes() {
 
-        DataManager sDataManager = DataManager.getInstance();
         final CourseInfo course = sDataManager.getCourse("android_async");
         final String noteTitle = "Test note title";
         final String noteText1 = "This is the body text of my test note";
