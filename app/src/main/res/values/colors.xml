@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#963400</color>
     <color name="colorAccent">#FF4081</color>
 
+
+    <color name="colorPrimaryTrip">#00cb82</color>
+    <color name="colorPrimaryDarkTrip">#00ad70</color>
+    <color name="colorAccentTrip">#b4b4b4</color>
+    <color name="colorLightGray">#f0f0f0</color>
+    <color name="colorDarkGray">#d2d2d2</color>
+    <color name="colorText">#606060</color>
 </resources>

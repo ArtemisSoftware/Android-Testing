@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.artemissoftware.tester">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,23 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".tasklist.LoginActivity"/>
-        <activity android:name=".tasklist.CreateTaskActivity"/>
+        <activity android:name=".trip.TripActivity" android:theme="@style/AppThemeTrip"></activity>
+
+
+        <!--TASK-->
+
+        <activity android:name=".tasklist.LoginActivity" />
+        <activity android:name=".tasklist.CreateTaskActivity" />
         <activity android:name=".tasklist.TaskListActivity" />
-
-
-        <activity android:name=".coffeecompanion.beveragelist.BeverageListActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".coffeecompanion.beveragedetail.BeverageDetailActivity"/>
-        <activity android:name=".coffeecompanion.coffeeshoplist.CoffeeShopListActivity"/>
-        <activity android:name=".coffeecompanion.coffeeshopdetail.CoffeeShopDetailActivity"/>
-
-
-        <activity android:name=".notekeeper.NoteListActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".notekeeper.NoteActivity" android:label="@string/title_activity_note" android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
-
+        <activity
+            android:name=".coffeecompanion.beveragelist.BeverageListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".coffeecompanion.beveragedetail.BeverageDetailActivity" />
+        <activity android:name=".coffeecompanion.coffeeshoplist.CoffeeShopListActivity" />
+        <activity android:name=".coffeecompanion.coffeeshopdetail.CoffeeShopDetailActivity" />
+        <activity
+            android:name=".notekeeper.NoteListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".notekeeper.NoteActivity"
+            android:label="@string/title_activity_note"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
